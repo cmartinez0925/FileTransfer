@@ -57,13 +57,7 @@ def main():
                 # Check if the path is a directory
                 if os.path.isdir(file_path):
                     # List directory contents
-                    directory_contents = os.listdir(file_path)
-                    html_content = "<html><body><ul>"
-                    for content in directory_contents:
-                        content_path = os.path.join(file_path, content)
-                        html_content += f'<li><a href="{content_path}">{content}</a></li>'
-                    html_content += "<ul></body></html>"
-
+                    html_content = utils.generate_directory_listing(file_path)
                     # Send the directory listing as an HTTP Response
                     http_response = utils.generate_200_response(len(html_content), '.html')
                     new_socket.sendall(http_response)

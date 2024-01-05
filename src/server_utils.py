@@ -1,5 +1,4 @@
 import os
-import socket
 
 class ServerUtils:
     # Properties
@@ -49,6 +48,16 @@ class ServerUtils:
         http_response += f"Content-Length: 13\r\n"
         http_response += f"Connection: close\r\n\r\n404 not found\r\n"
         return http_response.encode(self.encoding_type)
+    
+    def generate_directory_listing(self, file_path):
+        # List directory contents
+        directory_contents = os.listdir(file_path)
+        html_content = "<html><body><ul>"
+        for content in directory_contents:
+            content_path = os.path.join(file_path, content)
+            html_content += f'<li><a href="{content_path}">{content}</a></li>'
+        html_content += "<ul></body></html>"
+        return html_content.encode(self.encoding_type)
 
     def get_clientRequest_contentLength(self, new_socket):
         client_request = ""
