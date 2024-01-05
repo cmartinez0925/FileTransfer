@@ -1,7 +1,7 @@
 import os
 import socket
 
-class Server_Utils:
+class ServerUtils:
     # Properties
     DEFAULT = "default"
     END_OF_HEADER_LINE = "\r\n"
